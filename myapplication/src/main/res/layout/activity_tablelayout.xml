@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <TableLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:stretchColumns="0,1,2">
+
+        <TableRow>
+
+            <Button android:text="第一行第1列" />
+
+            <Button android:text="第一行第2列" />
+
+            <Button android:text="第一行第3列" />
+
+        </TableRow>
+
+        <TableRow>
+
+            <Button
+                android:layout_column="1"
+                android:layout_span="2"
+                android:text="我是" />
+        </TableRow>
+
+        <TableRow >
+            <View android:layout_height="100dp"></View>
+        </TableRow>
+
+        <TableRow >
+            <View android:layout_height="50dp"></View>
+
+        </TableRow>
+
+        <TableRow>
+            <TextView android:layout_column="2"
+                android:text="我是第五行第3列"
+                />
+
+        </TableRow>
+
+        <TableRow></TableRow>
+    </TableLayout>
+</LinearLayout>
