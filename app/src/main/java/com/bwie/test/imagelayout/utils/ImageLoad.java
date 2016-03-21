@@ -13,7 +13,7 @@ import java.net.MalformedURLException;
 import java.net.URL;
 
 public class ImageLoad {
-
+//	text
 	private String murl;
 	private ImageView mimg;
 	private Handler hand=new Handler(){
