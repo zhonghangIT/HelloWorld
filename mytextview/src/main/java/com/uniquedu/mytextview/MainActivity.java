@@ -3,29 +3,28 @@ package com.uniquedu.mytextview;
 import android.content.res.AssetManager;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.view.menu.ListMenuItemView;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.CheckBox;
+import android.widget.CompoundButton;
+import android.widget.Switch;
 import android.widget.TextView;
+import android.widget.ToggleButton;
 
 import com.google.gson.Gson;
-import com.google.gson.reflect.TypeToken;
 
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
-import java.lang.reflect.Type;
-import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
     private Button mButton;
     private TextView mTextView;
-
+    private Switch mSwitch;
+    private CheckBox mCheckBox;
+    private ToggleButton mToggleButton;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -39,6 +38,13 @@ public class MainActivity extends AppCompatActivity {
                 Gson gson=new Gson();
                 Clazz clazz=gson.fromJson(result,Clazz.class);
                 Log.d("myTag",""+clazz.getClazzName()+clazz.getStudents().get(0).getName());
+            }
+        });
+        mSwitch= (Switch) findViewById(R.id.switch1);
+        mSwitch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+
             }
         });
     }
