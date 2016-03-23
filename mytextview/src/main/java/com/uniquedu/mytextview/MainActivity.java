@@ -1,17 +1,26 @@
 package com.uniquedu.mytextview;
 
-import android.graphics.Color;
-import android.graphics.drawable.Drawable;
-import android.support.v7.app.AppCompatActivity;
+import android.content.res.AssetManager;
 import android.os.Bundle;
-import android.text.Html;
-import android.text.Html.ImageGetter;
-import android.text.Spannable;
-import android.text.Spanned;
-import android.text.util.Linkify;
+import android.support.v7.app.AppCompatActivity;
+import android.support.v7.view.menu.ListMenuItemView;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.lang.reflect.Type;
+import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
     private Button mButton;
@@ -26,19 +35,28 @@ public class MainActivity extends AppCompatActivity {
         mButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //点击按钮后更改文本内容
-//                mTextView.setText("更改后的内容");
-                //更改字体颜色
-//                mTextView.setTextColor(Color.argb(0xff,0x00,0xff,0x00));
-//                mTextView.setTextSize(20);//此处传入值为像素值
-                mTextView.setAutoLinkMask(Linkify.ALL);
-                mTextView.setText("我是一段文本 18612313241，大家有什么不会的可以上网搜索http://www.baidu.com 有是有搜素可以使用");
-                mTextView.setCompoundDrawablesWithIntrinsicBounds
-                        (R.mipmap.header, R.mipmap.ic_launcher, R.mipmap.header, R.mipmap.ic_launcher);
-
+                String result=readFromAssets();
+                Gson gson=new Gson();
+                Clazz clazz=gson.fromJson(result,Clazz.class);
+                Log.d("myTag",""+clazz.getClazzName()+clazz.getStudents().get(0).getName());
             }
-
         });
     }
 
+    private String readFromAssets() {
+        StringBuffer response = new StringBuffer();
+        AssetManager manager = getAssets();
+        try {
+            InputStream in = manager.open("json.txt");
+            BufferedReader reader = new BufferedReader(new InputStreamReader(in));
+            String line = reader.readLine();
+            while (line != null) {
+                response.append(line);
+                line = reader.readLine();
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return response.toString();
+    }
 }

@@ -20,20 +20,10 @@ public class MainActivity extends Activity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-//        在此处设置全屏,必须在super方法后，在setContentView()前调用
-        requestWindowFeature(Window.FEATURE_NO_TITLE);//去掉标题栏
-        //去掉状态栏
-        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
-                WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.activity_main);
         mButtonBack= (Button) findViewById(R.id.button);
         mTextView= (TextView) findViewById(R.id.textview);
-        mButtonBack.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                   mTextView.setVisibility(View.GONE);
-            }
-        });
+
     }
 
 
